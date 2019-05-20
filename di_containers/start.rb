@@ -6,6 +6,7 @@ require 'faraday_middleware'
 require 'dry-struct'
 require 'dry-validation'
 
+require 'pry'
 require 'webmock'
 require 'webmock/rspec'
 

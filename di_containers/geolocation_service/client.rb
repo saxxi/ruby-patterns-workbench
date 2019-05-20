@@ -10,7 +10,7 @@ class GeolocationService::Client
   end
 
   def self.client
-    WebREST::HTTPClient.new(url: 'http://something.com')        # settings (Settings.ipstack.url)
+    WebREST::HTTPClient.new(url: 'http://Settings.ipstack.url') # settings
   end
 
   def self.base_params

@@ -1,28 +1,44 @@
+require './spec/support/geolocation_service_helpers'
 require './di_containers/start.rb'
+
+RSpec.configure do |c|
+  c.include GeolocationServiceHelpers
+end
 
 describe GeolocationService::Geolocator do
 
-  let(:ip) { '211.172.2.63' }
-  let(:client) { double }
-  let(:body) {
+  let(:ip) { 'THE.IP' }
+  let(:geo_attributes) {
     {
-      'city': 'some',
-      'region_name': 'some',
-      'country_code': 'some',
+      city: 'London',
+      region_name: 'England',
+      country_code: 'UK',
     }
   }
 
-  it 'works' do
-    stub_request(:get, "http://something.com/211.172.2.63?access_key=Settings.ipstack.access_key").
-      with(
-        headers: {
-          'Expect'=>'',
-          'User-Agent'=>'Faraday v0.15.4'
-        }
-      ).to_return(status: 200, body: body.to_json, headers: {})
+  describe '#geolocation_from_ip' do
 
-    result = GeolocationService::Geolocator.geolocation_from_ip(ip)
-    puts result.inspect
+    it 'returns a geolocation from an ip address' do
+      geolocation_stub_request(ip, geo_attributes)
+
+      result = GeolocationService::Geolocator.geolocation_from_ip(ip)
+      expect(result).to eq(
+        GeolocationService::Entities::Geolocation.new({
+          city: 'London',
+          region: 'England',
+          country_code: 'UK',
+        })
+      )
+    end
+
+    it 'fails brutally for invalid requests' do
+      geolocation_stub_request(ip, geo_attributes, status: 500)
+
+      expect {
+        GeolocationService::Geolocator.geolocation_from_ip(ip)
+      }.to raise_error
+    end
+
   end
 
 end
