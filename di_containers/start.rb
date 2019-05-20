@@ -6,6 +6,9 @@ require 'faraday_middleware'
 require 'dry-struct'
 require 'dry-validation'
 
+require 'webmock'
+require 'webmock/rspec'
+
 require './lib/web_rest/http_client'
 require_relative 'geolocation_service/geolocator'
 require_relative 'geolocation_service/entities/types'
