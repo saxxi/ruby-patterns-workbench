@@ -1,5 +1,3 @@
-require './classic_ruby/start.rb'
-
 describe PaymentService do
 
   let(:ip) { 'THE.IP' }

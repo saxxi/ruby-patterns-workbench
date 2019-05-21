@@ -5,10 +5,9 @@ require 'faraday'
 require 'faraday_middleware'
 require 'dry-struct'
 require 'dry-validation'
+require 'dry-container'
 
 require 'pry'
-require 'webmock'
-require 'webmock/rspec'
 
 require './lib/web_rest/http_client'
 
