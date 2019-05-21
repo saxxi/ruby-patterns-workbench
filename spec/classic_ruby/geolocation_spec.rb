@@ -1,5 +1,5 @@
 require './spec/support/geolocation_service_helpers'
-require './di_containers/start.rb'
+require './classic_ruby/start.rb'
 
 RSpec.configure do |c|
   c.include GeolocationServiceHelpers
@@ -19,7 +19,7 @@ describe GeolocationService::Geolocator do
   describe '#geolocation_from_ip' do
 
     it 'returns a geolocation from an ip address' do
-      geolocation_stub_request(ip, geo_attributes)
+      geolocation_stub_request(ip, reply: geo_attributes)
 
       result = GeolocationService::Geolocator.geolocation_from_ip(ip)
       expect(result).to eq(
@@ -32,7 +32,7 @@ describe GeolocationService::Geolocator do
     end
 
     it 'fails brutally for invalid requests' do
-      geolocation_stub_request(ip, geo_attributes, status: 500)
+      geolocation_stub_request(ip, reply: geo_attributes, status: 500)
 
       expect {
         GeolocationService::Geolocator.geolocation_from_ip(ip)
