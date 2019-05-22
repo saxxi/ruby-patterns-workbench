@@ -11,10 +11,16 @@ require 'pry'
 
 require './lib/web_rest/http_client'
 
-require_relative 'classic_ruby/classic_ruby'
+require_relative 'classic_ruby/start'
 require_relative 'classic_ruby/geolocation_service/geolocator'
 require_relative 'classic_ruby/geolocation_service/entities/types'
 require_relative 'classic_ruby/geolocation_service/entities/geolocation'
 require_relative 'classic_ruby/geolocation_service/client'
 require_relative 'classic_ruby/payment_service'
 
+require_relative 'di_containers/start'
+require_relative 'di_containers/geolocation_service/geolocator'
+require_relative 'di_containers/geolocation_service/entities/types'
+require_relative 'di_containers/geolocation_service/entities/geolocation'
+require_relative 'di_containers/geolocation_service/client'
+require_relative 'di_containers/payment_service'
