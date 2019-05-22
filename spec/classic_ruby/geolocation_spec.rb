@@ -1,5 +1,6 @@
-describe GeolocationService::Geolocator do
+describe ClassicRuby::GeolocationService::Geolocator do
 
+  subject { ::ClassicRuby::GeolocationService::Geolocator }
   let(:ip) { 'THE.IP' }
   let(:geo_attributes) {
     {
@@ -14,9 +15,9 @@ describe GeolocationService::Geolocator do
     it 'returns a geolocation from an ip address' do
       geolocation_stub_request(ip, reply: geo_attributes)
 
-      result = GeolocationService::Geolocator.geolocation_from_ip(ip)
+      result = subject.geolocation_from_ip(ip)
       expect(result).to eq(
-        GeolocationService::Entities::Geolocation.new({
+        ::ClassicRuby::GeolocationService::Entities::Geolocation.new({
           city: 'London',
           region: 'England',
           country_code: 'UK',
@@ -28,7 +29,7 @@ describe GeolocationService::Geolocator do
       geolocation_stub_request(ip, reply: geo_attributes, status: 500)
 
       expect {
-        GeolocationService::Geolocator.geolocation_from_ip(ip)
+        subject.geolocation_from_ip(ip)
       }.to raise_error
     end
 

@@ -1,4 +1,4 @@
-module GeolocationServiceHelpers
+module ClassicRuby::GeolocationServiceHelpers
 
   def geolocation_example_api_attributes
     {

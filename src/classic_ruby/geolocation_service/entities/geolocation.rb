@@ -1,4 +1,4 @@
-module GeolocationService
+module ClassicRuby::GeolocationService
   module Entities
     class Geolocation < Dry::Struct
       transform_keys(&:to_sym)

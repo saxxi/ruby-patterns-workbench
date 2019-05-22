@@ -1,4 +1,4 @@
-class GeolocationService::Client
+class ClassicRuby::GeolocationService::Client
 
   def self.geolocate_ip(ip)
     result = client.get("/#{ip}", params: base_params)        # net call
