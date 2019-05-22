@@ -1,5 +1,6 @@
 describe ClassicRuby::PaymentService do
 
+  subject { ClassicRuby::PaymentService }
   let(:ip) { 'THE.IP' }
   let(:user) { double(ip: ip) }
 
@@ -7,7 +8,7 @@ describe ClassicRuby::PaymentService do
 
     it 'creates a payment' do
       geolocation_stub_request(ip)                            # We have a side effect but don't want do deal with it
-      result = ClassicRuby::PaymentService.create_user_payment(user)
+      result = subject.create_user_payment(user)
       expect(result).to eq 'England'
     end
 
