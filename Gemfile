@@ -11,6 +11,10 @@ gem 'puma', '~> 3.11'
 
 gem 'dry-struct'
 gem 'dry-validation'
+gem 'dry-container'
+gem 'dry-auto_inject'
+gem 'dry-system'
+gem 'dry-events'
 
 gem 'typhoeus'
 gem 'faraday'

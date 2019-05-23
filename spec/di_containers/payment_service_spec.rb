@@ -1,17 +1,25 @@
-describe DiContainers::PaymentService do
 
-  subject { DiContainers::PaymentService }
+describe 'DiContainer::PaymentService' do
+
+  subject { DiContainer::PaymentService }
   let(:ip) { 'THE.IP' }
   let(:user) { double(ip: ip) }
+  let(:client) { double }
+  let(:geo_attributes) {
+    {
+      city: 'London',
+      region: 'England',
+      country_code: 'UK',
+    }
+  }
 
-  describe '#create_user_payment' do
+  before do
+    expect(client).to receive(:geolocate_ip).with(ip).and_return(geo_attributes)
+    ::DiContainer::Container.stub 'geolocator.client', client
+  end
 
-    it 'creates a payment' do
-      geolocation_stub_request(ip)                            # We have a side effect but don't want do deal with it
-      result = subject.create_user_payment(user)
-      expect(result).to eq 'England'
-    end
-
+  it '#create_user_payment' do
+    expect(subject.create_user_payment(user)).to eq 'England'
   end
 
 end
