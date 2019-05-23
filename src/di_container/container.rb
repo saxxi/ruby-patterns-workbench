@@ -4,10 +4,10 @@ module DiContainer
   class Container < Dry::System::Container
     configure do |config|
       config.root = ROOT.join('di_container').realpath
-      # config.auto_register = %w[lib] # ?
     end
 
     load_paths! 'lib'
+    auto_register! 'lib'
   end
 end
 
