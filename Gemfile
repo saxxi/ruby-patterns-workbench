@@ -7,7 +7,7 @@ ruby '2.6.3'
 
 gem 'dotenv-rails', group: :development
 gem 'pg', '0.21.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 gem 'dry-struct'
 gem 'dry-validation'
